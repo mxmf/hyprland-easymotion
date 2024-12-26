@@ -20,11 +20,11 @@
   in {
     packages = forAllSystems (pkgs: {
       default = self.packages.${pkgs.system}.hyprland-easymotion;
-      hyprland-easymotion = pkgs.stdenvNoCC.mkDerivation rec {
+      hyprland-easymotion = inputs.hyprland.packages.${pkgs.system}.hyprland.stdenv.mkDerivation rec {
         name = "hyprland-easymotion";
         pname = name;
         src = ./.;
-        nativeBuildInputs = inputs.hyprland.packages.${pkgs.system}.hyprland.nativeBuildInputs ++ [inputs.hyprland.packages.${pkgs.system}.hyprland pkgs.gcc13];
+        nativeBuildInputs = inputs.hyprland.packages.${pkgs.system}.hyprland.nativeBuildInputs ++ [inputs.hyprland.packages.${pkgs.system}.hyprland];
         buildInputs = inputs.hyprland.packages.${pkgs.system}.hyprland.buildInputs;
 
         dontUseCmakeConfigure = true;
